@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "49461a07-14bd-43b5-944d-818dabb0bd23"
+      }
+    },
+    "owner": "axely7"
   }
 }
