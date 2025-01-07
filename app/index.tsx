@@ -22,9 +22,30 @@ const PushApp = () => {
           fontSize: 25,
         }}
       >
-        Notificaciones:
+        Notificaciones
       </ThemedText>
-      <FlatList />
+      <FlatList
+        data={notifications}
+        keyExtractor={(item) => item.request.identifier}
+        renderItem={({ item }) => (
+          <View>
+            <ThemedText
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              {item.request.content.title}
+            </ThemedText>
+            <ThemedText>{item.request.content.body}</ThemedText>
+            <ThemedText>
+              {JSON.stringify(item.request.content.data, null, 2)}
+            </ThemedText>
+          </View>
+        )}
+        ItemSeparatorComponent={() => (
+          <View style={{ height: 1, backgroundColor: "grey", opacity: 0.3 }} />
+        )}
+      />
     </View>
   );
 };
