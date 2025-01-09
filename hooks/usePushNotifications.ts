@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
+import { router } from "expo-router";
 
 
 Notifications.setNotificationHandler({
@@ -122,12 +123,16 @@ export const usePushNotifications = () => {
         areListeneresReady = true
         notificationListener.current =
         Notifications.addNotificationReceivedListener((notification) => {
+          console.log(notification)
           setNotifications((prevNotifications) => [notification, ...prevNotifications]);
         });
   
       responseListener.current =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          console.log(response);
+          const {chatId} = response.notification.request.content.data;
+          if(chatId){
+            router.push(`/chat/${chatId}`);
+          }
         });
   
     
